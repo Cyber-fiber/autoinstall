@@ -2,8 +2,8 @@
 
 ##################################################################################################
 # Author: Jayesh Joshi                                                                           # 
-# Description: Auto setup bash script to setup required programs after doing fresh install.      # 
-# Tested against Debian based distributions like Ubuntu 16.04/18.04 and Kali Linux.              #        
+# Description: Auto install bash script to setup required programs after doing fresh install.    # 
+# Tested against Debian based distributions like Ubuntu 16.04/18.04 and zorin os.                #        
 ##################################################################################################
 
 # Upgrade and Update Command
