@@ -11,10 +11,16 @@ echo -e "${c}Updating and upgrading before performing further operations."; $r
 sudo apt update -y && sudo apt upgrade -y
 sudo apt --fix-broken install -y
 
-# Enable dark mode and show theame list
+# Enable dark mode and show themes list
 gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
 ls -d /usr/share/themes/* |xargs -L 1 basename
 sleep 9
+
+# Show themes list indicator
+echo -e "\033[1;35m Themes list"
+# Other options and colors 
+# https://stackoverflow.com/questions/5947742/how-to-change-the-output-color-of-echo-in-linux#:~:text=some%20variables%20that%20you%20can%20use%3A
+# https://stackoverflow.com/questions/5947742/how-to-change-the-output-color-of-echo-in-linux#:~:text=4.-,background%20mode,-This%20mode%20is
 
 # Install figlet
 sudo apt update -y && sudo apt upgrade -y
@@ -36,7 +42,62 @@ fi
 # Multi option 
 figlet choose any option 
 
-blanck
+# Site https://serverfault.com/questions/144939/multi-select-menu-in-bash-script#:~:text=I%20used%20the%20example%20from%20MestreLion%20and%20drafted%20the%20code%20below.%20All%20you%20need%20to%20do%20is%20update%20the%20options%20and%20actions%20in%20the%20first%20two%20sections.
+# Menu options
+options[0]="Sign in my account"
+options[1]="All my files and folers"
+options[2]="Set my home screen wallpaper"
+options[4]="Start tmux session"
+
+# Actions to take based on selection
+function ACTIONS {
+    if [[ ${choices[0]} ]]; then
+        # Option 1 selected (Sign in my account)
+        echo "Option 1 selected"
+    fi
+    if [[ ${choices[1]} ]]; then
+        # Option 2 selected (Get my data)
+        echo "Option 2 selected"
+    fi
+    if [[ ${choices[2]} ]]; then
+        # Option 3 selected (set wallpaper if i dont like the default one)
+        echo "Option 3 selected"
+    fi
+    if [[ ${choices[3]} ]]; then
+        #Option 4 selected (this will start a tmux session and save it)
+        echo "Option 4 selected"
+    fi
+}
+
+# Variables
+ERROR=" "
+
+#Menu function
+function MENU {
+    echo "Menu Options"
+    for NUM in ${!options[@]}; do
+        echo "[""${choices[NUM]:- }""]" $(( NUM+1 ))") ${options[NUM]}"
+    done
+    echo "$ERROR"
+}
+
+# Menu loop
+while MENU && read -e -p "Select the desired options using their number (again to uncheck, ENTER when done): " -n1 SELECTION && [[ -n "$SELECTION" ]]; do
+    clear
+    if [[ "$SELECTION" == *[[:digit:]]* && $SELECTION -ge 1 && $SELECTION -le ${#options[@]} ]]; then
+        (( SELECTION-- ))
+        if [[ "${choices[SELECTION]}" == "+" ]]; then
+            choices[SELECTION]=""
+        else
+            choices[SELECTION]="+"
+        fi
+            ERROR=" "
+    else
+        ERROR="Invalid option: $SELECTION"
+    fi
+done
+
+ACTIONS
 
 # Required dependencies for all softwares (important)
 echo -e "${c}Installing complete dependencies pack."; $r
@@ -55,6 +116,9 @@ sudo tlp start
 sudo tlp-stat -s
 sleep 5
 
+# indicates tlp status
+echo -e "\033[1;35m Themes list"
+
 # Install Hardinfo (show hardware info) & timeshift (compleate backup of the os)
 sudo apt install -y hardinfo
 sudo apt install -y timeshift
@@ -71,7 +135,7 @@ sudo apt install -y htop
 
 # Start htop
 gnome-terminal -e htop
-gnome-terminal --tab --title="test" --command="htop"
+gnome-terminal --tab --title="taskmanager" --command="htop"
  
 # Install Stacer GUI-based Linux system optimizer (better task manager) 
 # site https://www.ubuntupit.com/best-linux-task-managers-reviewed-for-linux-nerds/
@@ -130,8 +194,6 @@ chmod +x eDEX-UI-Linux-x86_64.AppImage
 # There wiil be a sesion name enor
 # Site https://phoenixnap.com/kb/tmux-tutorial-install-commands
 sudo apt install -y tmux
-
-
 
 # Final Upgrade and Update Command
 echo -e "${c}Updating and upgrading to finish auto-setup script."; $r
