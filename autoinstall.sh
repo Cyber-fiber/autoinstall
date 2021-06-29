@@ -64,8 +64,19 @@ function ACTIONS {
         echo "Option 3 selected"
     fi
     if [[ ${choices[3]} ]]; then
-        #Option 4 selected (this will start a tmux session and save it)
-        echo "Option 4 selected"
+        #Option 4 selected (this will start a tmux session and save it) 
+
+       # Add tmux session
+       # Site1 https://askubuntu.com/questions/830484/how-to-start-tmux-with-several-panes-open-at-the-same-time
+       # Site2 https://stackoverflow.com/questions/31902929/how-to-write-a-shell-script-that-starts-tmux-session-and-then-runs-a-ruby-scrip
+       # Site3 https://unix.stackexchange.com/questions/171488/why-is-my-second-tmux-session-not-shown-in-ps-aux-or-htop-but-in-tmux-list-sessi
+       # Site4 https://stackoverflow.com/questions/5609192/how-to-set-up-tmux-so-that-it-starts-up-with-specified-windows-opened
+             tmux new-session -d -s enor 'htop';          # start new detached tmux session, run htop
+             tmux split-window -h;                        # split the detached tmux session
+             tmux send 'ncdu' ENTER;                      # send 2nd command 'ncdu' to 2nd pane.
+             tmux split-window -v ;                       # split vertically
+             tmux send 'neofetch' ENTER;                  # start neofetch (neofetch is like pfetch)
+             tmux a;                                      # open (attach) tmux session.
     fi
 }
 
@@ -96,8 +107,6 @@ while MENU && read -e -p "Select the desired options using their number (again t
         ERROR="Invalid option: $SELECTION"
     fi
 done
-
-ACTIONS
 
 # Required dependencies for all softwares (important)
 echo -e "${c}Installing complete dependencies pack."; $r
@@ -136,6 +145,9 @@ sudo apt install -y htop
 # Start htop
 gnome-terminal -e htop
 gnome-terminal --tab --title="taskmanager" --command="htop"
+
+# Install neofetch show system info system info (there is also pfetch)
+sudo apt install -y neofetch 
  
 # Install Stacer GUI-based Linux system optimizer (better task manager) 
 # site https://www.ubuntupit.com/best-linux-task-managers-reviewed-for-linux-nerds/
@@ -191,7 +203,7 @@ wget https://github.com/GitSquared/edex-ui/releases/download/v2.2.7/eDEX-UI-Linu
 chmod +x eDEX-UI-Linux-x86_64.AppImage
 
 # Install tmux (windows manager like i3)
-# There wiil be a sesion name enor
+# There will be a sesion name enor
 # Site https://phoenixnap.com/kb/tmux-tutorial-install-commands
 sudo apt install -y tmux
 
@@ -229,6 +241,11 @@ figlet remove software not needed
 figlet __________________________
 figlet other things
 figlet ____________
+
+sleep 10
+
+# This will act upon the menu options
+ACTIONS
 
 # Exit 
 cd ~
