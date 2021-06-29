@@ -242,7 +242,7 @@ figlet __________________________
 figlet other things
 figlet ____________
 
-sleep 10
+sleep 15
 
 # This will act upon the menu options
 ACTIONS
