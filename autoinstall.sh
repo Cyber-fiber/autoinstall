@@ -53,7 +53,12 @@ options[4]="Start tmux session"
 function ACTIONS {
     if [[ ${choices[0]} ]]; then
         # Option 1 selected (Sign in my account)
-        echo "Option 1 selected"
+        echo "Please enter your username and password"
+        echo "Username"
+        read username
+        echo "Password"
+        read password
+        curl -u $username:$password --silent "https://mail.google.com/mail/feed/atom" |  grep -oPm1 "(?<=<title>)[^<]+" | sed '1d'
     fi
     if [[ ${choices[1]} ]]; then
         # Option 2 selected (Get my data)
