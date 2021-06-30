@@ -14,13 +14,14 @@ sudo apt --fix-broken install -y
 # Enable dark mode and show themes list
 gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
 ls -d /usr/share/themes/* |xargs -L 1 basename
-sleep 9
 
 # Show themes list indicator
 echo -e "\033[1;35m Themes list"
 # Other options and colors 
 # https://stackoverflow.com/questions/5947742/how-to-change-the-output-color-of-echo-in-linux#:~:text=some%20variables%20that%20you%20can%20use%3A
 # https://stackoverflow.com/questions/5947742/how-to-change-the-output-color-of-echo-in-linux#:~:text=4.-,background%20mode,-This%20mode%20is
+
+sleep 9
 
 # Install figlet
 sudo apt update -y && sudo apt upgrade -y
@@ -47,7 +48,7 @@ figlet choose any option
 options[0]="Sign in my account"
 options[1]="All my files and folers"
 options[2]="Set my home screen wallpaper"
-options[4]="Start tmux session"
+options[3]="Start tmux session"
 
 # Actions to take based on selection
 function ACTIONS {
@@ -134,10 +135,11 @@ sudo apt install -y tlp
 # Start TLP & show status 
 sudo tlp start
 sudo tlp-stat -s
-sleep 5
 
 # indicates tlp status
 echo -e "\033[1;35m Themes list"
+
+sleep 5
 
 # Install Hardinfo (show hardware info) & timeshift (compleate backup of the os)
 sudo apt install -y hardinfo
