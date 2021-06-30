@@ -57,11 +57,17 @@ function ACTIONS {
     fi
     if [[ ${choices[1]} ]]; then
         # Option 2 selected (Get my data)
-        echo "Option 2 selected"
+        # Site1 https://www.howtogeek.com/414082/how-to-zip-or-unzip-files-from-the-linux-terminal/
+        cd ~/Downloads                          # Move to Downloads folder as defaul place 
+        wget                                    # Link here 
+        unzip                                   # Unzip file and file name here
     fi
     if [[ ${choices[2]} ]]; then
         # Option 3 selected (set wallpaper if i dont like the default one)
-        echo "Option 3 selected"
+        # Site1 https://connectwww.com/change-ubuntu-background-to-solid-colour-set-wallpaper-to-solid-color-in-ubuntu/62142/ 
+        gsettings set org.gnome.desktop.background primary-color '#000b18'
+        gsettings set org.gnome.desktop.background secondary-color '#1d1d1f'
+        gsettings set org.gnome.desktop.background color-shading-type 'horizontal'
     fi
     if [[ ${choices[3]} ]]; then
         #Option 4 selected (this will start a tmux session and save it) 
@@ -216,6 +222,7 @@ sudo apt --fix-broken install -y
 # Taskbar pin shortcut i searched a lot but could not do
 # Auto use tmux hmmm maby could do 
 # Multi chose option i wanted it to be like ( 1,3) and not be like 1 then 3 
+# I could not set the background because it requires a specific username so i am not able to add it
 # site https://www.google.com/search?q=how+to+setup+linux+taskbar+in+ubuntu+using+bash+script&safe=active&rlz=1C1CHNY_enIN915IN915&biw=1422&bih=677&sxsrf=ALeKk03OmXbIqrMWXUAsNJ74_2pwdikLPw%3A1623262166484&ei=1gPBYNyOHZHfz7sPtK2huAU&oq=how+to+setup+linux+taskbar+in+ubuntu+using+bash+&gs_lcp=Cgdnd3Mtd2l6EAEYADIFCCEQoAEyBQghEKABMgUIIRCgAToHCAAQRxCwAzoICCEQFhAdEB5QkxFY5zRguz5oAXACeACAAeEBiAH5EJIBBjAuMTIuMZgBAKABAaoBB2d3cy13aXrIAQjAAQE&sclient=gws-wiz
 # Maby other things i want to add
 
