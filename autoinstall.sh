@@ -166,7 +166,6 @@ sudo apt install -y neofetch
 # site https://www.ubuntupit.com/best-linux-task-managers-reviewed-for-linux-nerds/
 # site2 https://linuxhint.com/best_system_monitoring_tools_for_ubuntu/
 # site3 https://medium.com/@alex285/get-powerlevel9k-the-most-cool-linux-shell-ever-1c38516b0caa
-# site4 https://linuxhint.com/best_system_monitoring_tools_for_ubuntu/
 sudo apt install stacer -y
 if ! command -v stacer
 then
