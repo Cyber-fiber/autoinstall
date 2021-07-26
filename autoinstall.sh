@@ -175,12 +175,18 @@ then
 fi
 if ! command -v stacer
 then
+ # site https://dev.to/strotgen/download-latest-release-file-from-github-2jjc
+ # site2 https://gist.github.com/steinwaywhw/a4cd19cda655b8249d908261a62687f8
      cd ~/Downloads
-     wget https://github.com/oguzhaninan/Stacer/releases/download/v1.1.0/stacer_1.1.0_amd64.deb
-     sudo dpkg -i stacer_1.1.0_amd64.deb
+     curl  https://api.github.com/repos/oguzhaninan/Stacer/releases/latest \
+     | grep "browser_download_url.*deb" \
+     | cut -d : -f 2,3 \
+     | tr -d \" \
+     | wget -cqi - -O stacer.deb
+     sudo dpkg -i stacer.deb
      apt install stacer
      sudo apt --fix-broken install -y
-     rm stacer_1.1.0_amd64.deb
+     rm stacer.deb
 fi
 
 # Check that stacer is there
@@ -218,6 +224,19 @@ chmod +x eDEX-UI-Linux-x86_64.AppImage
 # There will be a sesion name enor
 # Site https://phoenixnap.com/kb/tmux-tutorial-install-commands
 sudo apt install -y tmux
+
+# Download all AppImages
+cd ~
+mkdir AppImage
+cd AppImage
+# stacer
+     curl  https://api.github.com/repos/oguzhaninan/Stacer/releases/latest \
+     | grep "browser_download_url.*AppImage" \
+     | cut -d : -f 2,3 \
+     | tr -d \" \
+     | wget -cqi - -O stacer.AppImage
+     chmod +x stacer.AppImage
+#eDEX UI
 
 # Final Upgrade and Update Command
 echo -e "${c}Updating and upgrading to finish auto-setup script."; $r
