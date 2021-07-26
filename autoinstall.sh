@@ -217,8 +217,13 @@ gnome-terminal -e ncdu
 cd ~/Downloads
 mkdir edex
 cd edex
-wget https://github.com/GitSquared/edex-ui/releases/download/v2.2.7/eDEX-UI-Linux-x86_64.AppImage
-chmod +x eDEX-UI-Linux-x86_64.AppImage
+curl  https://api.github.com/repos/GitSquared/edex-ui/releases/latest \
+| grep "browser_download_url.*AppImage" \
+| grep x86_64 \
+| cut -d : -f 2,3 \
+| tr -d \" \
+| wget -cqi - -O edex.AppImage
+chmod +x edex.AppImage
 
 # Install tmux (windows manager like i3)
 # There will be a sesion name enor
@@ -237,7 +242,13 @@ cd AppImage
      | wget -cqi - -O stacer.AppImage
      chmod +x stacer.AppImage
 #eDEX UI
-
+     curl  https://api.github.com/repos/GitSquared/edex-ui/releases/latest \
+     | grep "browser_download_url.*AppImage" \
+     | grep i386 \
+     | cut -d : -f 2,3 \
+     | tr -d \" \
+     | wget -cqi - -O edex-i386.AppImage
+     chmod +x edex-i386.AppImage
 # Final Upgrade and Update Command
 echo -e "${c}Updating and upgrading to finish auto-setup script."; $r
 sudo apt update && sudo apt upgrade -y
