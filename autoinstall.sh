@@ -266,7 +266,7 @@ sudo apt --fix-broken install -y
 figlet autoinstall is done
 figlet _________________
 
-# Things need to do after autosetup
+# Things need to do after autoinstall
 # Maby need to do
 figlet Maby need to do
 figlet _______________
