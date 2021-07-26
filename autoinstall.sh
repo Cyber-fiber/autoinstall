@@ -263,7 +263,7 @@ sudo apt --fix-broken install -y
 # Maby other things i want to add
 
 # Installation done
-figlet autosetup is done
+figlet autoinstall is done
 figlet _________________
 
 # Things need to do after autosetup
