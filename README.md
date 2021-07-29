@@ -6,8 +6,9 @@ Auto install is a bash script that install all program and user data it make the
 - Just copy and past this and it will wprk
     ```
     cd ~/Downloads
-    git clone https://github.com/JJ-cyber-things/autoinstall
+    git clone https://github.com/Cyber-fiber/autoinstall
     cd autoinstall
     bash autoinstall.sh
     ```
 # This is still not compleate and there are some bugs 
+
