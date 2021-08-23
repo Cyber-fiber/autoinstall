@@ -251,7 +251,7 @@ cd AppImage
      chmod +x edex-i386.AppImage
 # Final Upgrade and Update Command
 echo -e "${c}Updating and upgrading to finish auto-setup script."; $r
-sudo apt update && sudo apt upgrade -y
+sudo apt update -y && sudo apt upgrade -y
 sudo apt --fix-broken install -y
 
 # Thing i was not able to add
