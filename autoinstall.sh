@@ -170,7 +170,7 @@ sudo apt install stacer -y
 if ! command -v stacer
 then
      sudo add-apt-repository ppa:oguzhaninan/stacer -y
-     sudo apt-get update
+     sudo apt-get -y update
      sudo apt-get install stacer -y
 fi
 if ! command -v stacer
@@ -184,7 +184,7 @@ then
      | tr -d \" \
      | wget -cqi - -O stacer.deb
      sudo dpkg -i stacer.deb
-     apt install stacer
+     apt install stacer -y
      sudo apt --fix-broken install -y
      rm stacer.deb
 fi
@@ -201,7 +201,7 @@ fi
      wget https://github.com/oguzhaninan/Stacer/releases/download/v1.1.0/stacer_1.1.0_amd64.deb
      sudo dpkg -i stacer_1.1.0_amd64.deb
      sudo apt --fix-broken install -y
-     apt install stacer
+     sudo apt install stacer -y
      rm stacer_1.1.0_amd64.deb
 
      stacer
